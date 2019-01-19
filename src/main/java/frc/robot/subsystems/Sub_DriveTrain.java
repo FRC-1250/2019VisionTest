@@ -105,7 +105,7 @@ public class Sub_DriveTrain extends Subsystem {
 		
 		double xDiff = 0 - xOffset *-1;
 		// areaDiff = CUBE_AREA_SETPOINT - areaOffset;
-		double xCorrect = 0.03 * xDiff;
+		double xCorrect = xDiff;
 		// double aCorrect = 0.35 * areaDiff;
 
 		
