@@ -26,7 +26,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-//sadsadsa
+
 public class Sub_DriveTrain extends Subsystem {
   // Motor Controllers
 	WPI_TalonSRX fLeftMotor = new WPI_TalonSRX(RobotMap.DRV_LEFT_FRONT);
@@ -101,7 +101,7 @@ public class Sub_DriveTrain extends Subsystem {
 	    }
 	
 	
-	public void trackCube(double xOffset, double joy) {
+	public void trackCube(double xOffset, double aJoy) {
 		
 		double xDiff = 0 - xOffset *-1;
 		// areaDiff = CUBE_AREA_SETPOINT - areaOffset;
@@ -109,7 +109,7 @@ public class Sub_DriveTrain extends Subsystem {
 		// double aCorrect = 0.35 * areaDiff;
 
 		
-		diffDriveGroup.arcadeDrive(-joy.getY(), xCorrect);
+		diffDriveGroup.arcadeDrive(aJoy, xCorrect);
 		
 		SmartDashboard.putNumber("Area Diff", areaDiff);
 	}

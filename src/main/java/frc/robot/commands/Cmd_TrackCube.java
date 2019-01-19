@@ -12,7 +12,8 @@ public class Cmd_TrackCube extends Command {
     Joystick joy;
 	
 	private double xCube;
-	private double aCube;
+    private double aCube;
+    private double aJoy;
 	
     public Cmd_TrackCube() {
         requires(Robot.s_drivetrain);
