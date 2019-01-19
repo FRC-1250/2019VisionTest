@@ -9,7 +9,6 @@ import frc.robot.Robot;
  */
 public class Cmd_TrackCube extends Command {
 
-    Joystick joy;
 	
 	private double xCube;
     private double aCube;
@@ -29,9 +28,9 @@ public class Cmd_TrackCube extends Command {
     	
     	xCube = Robot.s_limelight.getCubeX();
         aCube = Robot.s_limelight.getCubeArea();
-        aJoy  = joy.getY();
+        aJoy  = Robot.m_oi.getGamepad().getY();
 		
-		Robot.s_drivetrain.trackCube(xCube, aJoy);
+		Robot.s_drivetrain.trackCube(xCube, -aJoy);
     }
 
     // Make this return true when this Command no longer needs to run execute()

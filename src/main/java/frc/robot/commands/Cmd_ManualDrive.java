@@ -15,6 +15,9 @@ public class Cmd_ManualDrive extends Command {
 	
 	private double xCube;
 	private double aCube;
+	private double aJoy;
+
+
 	public Cmd_ManualDrive() {
 		requires(Robot.s_drivetrain);
 		requires(Robot.s_limelight);
@@ -27,16 +30,21 @@ public class Cmd_ManualDrive extends Command {
 
 	// Checks clutch state by running shiftState Method
 	protected void execute() {
-		
-		if (Robot.m_oi.getButtonState(2)) {
-		xCube = Robot.s_limelight.getCubeX();
-		aCube = Robot.s_limelight.getCubeArea();
-		
-		Robot.s_drivetrain.trackCube(xCube, aCube);
-		}
-		else {
-			Robot.s_drivetrain.drive(Robot.m_oi.getGamepad());
-		}
+
+	if (Robot.m_oi.getButtonState(11) && Robot.m_oi.getButtonState(8)) {
+			xCube = Robot.s_limelight.getCubeX();
+			aCube = Robot.s_limelight.getCubeArea();
+			aJoy  = Robot.m_oi.getGamepad().getY();
+			
+			Robot.s_drivetrain.trackCube(xCube, -aJoy);
+			}
+		else if (Robot.m_oi.getButtonState(8)){
+		Robot.s_drivetrain.driveArcade(Robot.m_oi.getGamepad());
+		}	
+
+			else {
+				Robot.s_drivetrain.drive(Robot.m_oi.getGamepad());
+			}
 		
 
 	}

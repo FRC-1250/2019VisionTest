@@ -22,7 +22,7 @@ public class OI {
 	JoystickButton rt = new JoystickButton(Gamepad, 8);
 	
 	public OI() {
-		rt.whenPressed(new Cmd_TrackCube());
+		// rt.whenPressed(new Cmd_TrackCube());
 	}
 	
 	

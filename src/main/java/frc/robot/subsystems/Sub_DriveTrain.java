@@ -90,11 +90,13 @@ public class Sub_DriveTrain extends Subsystem {
 	public void driveStraight() {
 		double diff = 0 - gyro.getAngle();
 		double corrected = .05 * diff;
-		
-		
 		diffDriveGroup.arcadeDrive(0.8, 0 + corrected);
 		
 	}
+	public void driveArcade(Joystick joy){
+		diffDriveGroup.arcadeDrive(-joy.getY(), -joy.getX());
+	}
+
 	
 	 public void setpointCube(double areaSetpoint) {
 	    	CUBE_AREA_SETPOINT = areaSetpoint;
