@@ -11,8 +11,8 @@ public class Cmd_ManualDrive extends Command {
 	
 	private double xCube;
 	private double aCube;
-	private double Kp = -0.1;
-	private double min_command = 0.05;
+	private double Kp = -0.07;
+	private double min_command = 0.5;
 
 
 	public Cmd_ManualDrive() {
@@ -27,7 +27,7 @@ public class Cmd_ManualDrive extends Command {
 
 	// Checks clutch state by running shiftState Method
 	protected void execute() {
-	if (Robot.m_oi.getButtonState(11) && Robot.m_oi.getButtonState(8)) {
+	if (Robot.m_oi.getButtonState(7) && Robot.m_oi.getButtonState(8)) {
 		xCube = Robot.s_limelight.getCubeX();
 		aCube = Robot.s_limelight.getCubeArea();
 
@@ -41,7 +41,7 @@ public class Cmd_ManualDrive extends Command {
 				steering_adjust = Kp * heading_error + min_command;
 			}
 		
-		Robot.s_drivetrain.trackCube(steering_adjust, aCube);
+		Robot.s_drivetrain.trackCube(steering_adjust, -Robot.m_oi.getGamepad().getY());
 		}
 			
 		else if (Robot.m_oi.getButtonState(8)){
