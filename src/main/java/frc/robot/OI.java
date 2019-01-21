@@ -9,6 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Cmd_AutoDrive;
+import frc.robot.commands.Cmd_ResetSensPos;
 import frc.robot.commands.Cmd_TrackCube;
 
 /**
@@ -20,9 +22,15 @@ public class OI {
 	Joystick Arcadepad = new Joystick(1);
 	
 	JoystickButton rt = new JoystickButton(Gamepad, 8);
+	JoystickButton y = new JoystickButton(Gamepad, 4);
+	JoystickButton b = new JoystickButton(Gamepad, 3);
+	JoystickButton x = new JoystickButton(Gamepad, 1);
 	
 	public OI() {
-		// rt.whenPressed(new Cmd_TrackCube());
+		y.whenPressed(new Cmd_AutoDrive(12, .4, .2));
+		b.whenPressed(new Cmd_AutoDrive(-12, .4, .2));
+		x.whenPressed(new Cmd_ResetSensPos());
+
 	}
 	
 	
