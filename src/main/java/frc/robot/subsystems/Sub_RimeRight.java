@@ -4,6 +4,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,8 +22,9 @@ public class Sub_RimeRight extends Subsystem {
     }
     
     public double getCubeX() {
-    	NetworkTableEntry tx = table.getEntry("tx");
-    	return  tx.getDouble(0); 
+        NetworkTableEntry tx = table.getEntry("tx");
+        SmartDashboard.putNumber("xoff", tx.getDouble(0));
+        return  tx.getDouble(0); 
     }
     
     public double getCubeY() {
@@ -32,7 +34,9 @@ public class Sub_RimeRight extends Subsystem {
     
     public double getCubeArea() {
     	NetworkTableEntry ta = table.getEntry("ta");
-    	return ta.getDouble(0);
+        return ta.getDouble(0);
+
     }
+
 }
 

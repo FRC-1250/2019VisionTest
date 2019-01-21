@@ -105,12 +105,13 @@ public class Sub_DriveTrain extends Subsystem {
 	
 	public void trackCube(double xOffset, double aJoy) {
 		
-		double xDiff = 0 - xOffset *-1;
+		double xDiff = xOffset;
 		// areaDiff = CUBE_AREA_SETPOINT - areaOffset;
 		double xCorrect = xDiff;
 		// double aCorrect = 0.35 * areaDiff;
+		SmartDashboard.putNumber("steering_adjust", xOffset);
+		SmartDashboard.putNumber("joystickY", aJoy);
 
-		
 		diffDriveGroup.arcadeDrive(aJoy, xCorrect);
 		
 		SmartDashboard.putNumber("Area Diff", areaDiff);

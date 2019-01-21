@@ -11,8 +11,8 @@ public class Cmd_ManualDrive extends Command {
 	
 	private double xCube;
 	private double aCube;
-	private double Kp = -0.07;
-	private double min_command = 0.5;
+	private double Kp = -0.05;
+	private double min_command = 0.3;
 
 
 	public Cmd_ManualDrive() {
@@ -35,10 +35,10 @@ public class Cmd_ManualDrive extends Command {
 		double steering_adjust = 0.0;
 			
 			if(xCube > 1){
-				steering_adjust = Kp * heading_error - min_command;
+				steering_adjust = Kp * heading_error + min_command;
 			}
 			if(xCube < 1){
-				steering_adjust = Kp * heading_error + min_command;
+				steering_adjust = Kp * heading_error - min_command;
 			}
 		
 		Robot.s_drivetrain.trackCube(steering_adjust, -Robot.m_oi.getGamepad().getY());
