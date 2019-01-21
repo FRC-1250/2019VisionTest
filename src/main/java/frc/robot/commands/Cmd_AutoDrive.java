@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import org.junit.rules.Timeout;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -8,7 +10,8 @@ import frc.robot.Robot;
  */
 public class Cmd_AutoDrive extends Command {
 
-	int distance = 0;
+    int distance = 0;
+    float sign;
 	double upperSpeed;
 	double lowerSpeed;
 
@@ -21,10 +24,9 @@ public class Cmd_AutoDrive extends Command {
     
 
     protected void initialize() {
-    	Robot.s_drivetrain.resetLeftTicks();
     	Robot.s_drivetrain.resetGyro();
     	Robot.s_drivetrain.setSetpointPos(distance);
-    	setTimeout(5);
+    	setTimeout(15);
     }
 
 
@@ -34,8 +36,20 @@ public class Cmd_AutoDrive extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	return Robot.s_drivetrain.isDoneDriving();
+    protected boolean isFinished(){
+        sign = Math.signum(distance);
+
+        if (sign == 1){
+            return Robot.s_drivetrain.isDoneDriving() || isTimedOut();
+        }
+        if (sign == -1){
+            return Robot.s_drivetrain.isDoneDrivingBack() || isTimedOut();
+        }
+        else{
+            return false;
+        }
+        
+    	// return Robot.s_drivetrain.isDoneDriving();
     }
 
     // Called once after isFinished returns true

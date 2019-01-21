@@ -49,7 +49,7 @@ public class Sub_DriveTrain extends Subsystem {
 	AnalogGyro gyro = new AnalogGyro(RobotMap.GYRO);
 	
 	public int driveSetpoint = 10;
-	private final double DRIVE_TICKS = 376.5;
+	private final double DRIVE_TICKS = 365.8;
 	
 	private double CUBE_AREA_SETPOINT = 12;
 	
@@ -71,6 +71,7 @@ public class Sub_DriveTrain extends Subsystem {
 		mRightMotor.configOpenloopRamp(0.1, 10);
 		bRightMotor.configOpenloopRamp(0.1, 10);
 		
+		bRightMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		fLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		
 	}
@@ -139,12 +140,10 @@ public class Sub_DriveTrain extends Subsystem {
     }
     
     public int getLeftTicks() {
-    	return fLeftMotor.getSelectedSensorPosition(0);
+    	return bRightMotor.getSelectedSensorPosition(0);
     }
     
-    public void resetLeftTicks() {
-    	fLeftMotor.setSelectedSensorPosition(0,0, 10);
-    }
+  
     
     public void setSetpointPos(int distance) {
     	driveSetpoint = (int)DRIVE_TICKS * distance;
@@ -152,9 +151,21 @@ public class Sub_DriveTrain extends Subsystem {
     
     public boolean isDoneDriving() {
     	
-    	int currVal = this.getLeftTicks() * -1;
-    	return ((currVal -  driveSetpoint) >= 0);
-    }
+		int currVal = this.getLeftTicks() * 1;
+		int distToPos = currVal -  driveSetpoint;
+		SmartDashboard.putNumber("distToPos", distToPos);
+    	return (distToPos >= 0);
+	}
+
+	public boolean isDoneDrivingBack() {
+    	
+		int currVal = this.getLeftTicks() * 1;
+		int distToPos = currVal -  driveSetpoint;
+		SmartDashboard.putNumber("distToPos", distToPos);
+    	return (distToPos <= 0);
+	}
+	
+
  
  public void driveToPos( double upperSpeed, double lowerSpeed) {
     	
@@ -215,7 +226,7 @@ public class Sub_DriveTrain extends Subsystem {
   	return (Math.abs(angle - this.getGyroAngle()) < 2);
   }
   public void resetSensorPos() {
-  	fRightMotor.setSelectedSensorPosition(0, 0, 10);
+  	bRightMotor.setSelectedSensorPosition(0, 0, 10);
   	fLeftMotor.setSelectedSensorPosition(0, 0, 10);
   }
     
