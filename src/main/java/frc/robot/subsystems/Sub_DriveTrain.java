@@ -139,6 +139,7 @@ public class Sub_DriveTrain extends Subsystem {
     }
     
     public int getLeftTicks() {
+		SmartDashboard.putNumber("lefttecks", fLeftMotor.getSelectedSensorPosition(0));
     	return fLeftMotor.getSelectedSensorPosition(0);
     }
     
