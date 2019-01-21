@@ -71,7 +71,7 @@ public class Sub_DriveTrain extends Subsystem {
 		mRightMotor.configOpenloopRamp(0.1, 10);
 		bRightMotor.configOpenloopRamp(0.1, 10);
 		
-		fLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+		fLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		
 	}
 
@@ -139,6 +139,7 @@ public class Sub_DriveTrain extends Subsystem {
     }
     
     public int getLeftTicks() {
+		SmartDashboard.putNumber("lefttecks", fLeftMotor.getSelectedSensorPosition(0));
     	return fLeftMotor.getSelectedSensorPosition(0);
     }
     
