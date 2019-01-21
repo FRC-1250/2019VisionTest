@@ -22,7 +22,6 @@ public class Cmd_AutoDrive extends Command {
     	this.lowerSpeed = upperSpeed;
     }
     
-
     protected void initialize() {
     	Robot.s_drivetrain.resetGyro();
     	Robot.s_drivetrain.setSetpointPos(distance);
