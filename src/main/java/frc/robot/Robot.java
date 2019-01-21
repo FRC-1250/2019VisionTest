@@ -124,6 +124,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    System.out.println(s_drivetrain.getLeftTicks());
+
   }
 
   /**
@@ -136,6 +138,5 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Gyro POS", s_drivetrain.getGyroAngle());
 		SmartDashboard.putNumber("Cube X", s_limelight.getCubeX());
 		SmartDashboard.putNumber("Cube Area", s_limelight.getCubeArea());
-		SmartDashboard.putNumber("Left Ticks",s_drivetrain.getLeftTicks());
 }
 }
