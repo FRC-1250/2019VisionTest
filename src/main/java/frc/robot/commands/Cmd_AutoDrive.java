@@ -10,7 +10,8 @@ public class Cmd_AutoDrive extends Command {
 
 	int distance = 0;
 	double upperSpeed;
-	double lowerSpeed;
+    double lowerSpeed;
+    float sign;
 
     public Cmd_AutoDrive(int distance, double upperSpeed, double lowerSpeed) {
     	requires(Robot.s_drivetrain);
@@ -21,7 +22,7 @@ public class Cmd_AutoDrive extends Command {
     
 
     protected void initialize() {
-    	Robot.s_drivetrain.resetLeftTicks();
+    	Robot.s_drivetrain.resetSensorPos();
     	Robot.s_drivetrain.resetGyro();
     	Robot.s_drivetrain.setSetpointPos(distance);
     	setTimeout(5);
@@ -35,8 +36,18 @@ public class Cmd_AutoDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.s_drivetrain.isDoneDriving();
-    }
+        sign = Math.signum(distance);
+        
+        if (sign == 1){
+            return Robot.s_drivetrain.isDoneDriving() || isTimedOut();
+        }
+        if (sign == -1){
+            return Robot.s_drivetrain.isDoneDrivingBack() || isTimedOut();
+        }
+        else{
+            return false;
+        }
+        }
 
     // Called once after isFinished returns true
     protected void end() {
