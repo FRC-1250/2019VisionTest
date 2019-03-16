@@ -124,11 +124,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    SmartDashboard.putNumber("left ticks", s_drivetrain.getLeftTicks());
-    // SmartDashboard.putNumber("distToPos", s_drivetrain.distanceToPos());
-    // SmartDashboard.putNumber("angle", s_drivetrain.getGyroAngle());
-
-
+    System.out.println(s_drivetrain.getLeftTicks());
 
   }
 

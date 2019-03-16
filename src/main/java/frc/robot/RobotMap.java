@@ -14,12 +14,27 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-	public static final int DRV_LEFT_FRONT  = 10;
-	public static final int DRV_LEFT_MID    = 11;
-	public static final int DRV_LEFT_BACK   = 12;
+	public static final int DRV_LEFT_FRONT = 10;
+	public static final int DRV_LEFT_MID = 11;
+	public static final int DRV_LEFT_BACK = 12;
 	public static final int DRV_RIGHT_FRONT = 23;
-	public static final int DRV_RIGHT_MID   = 24;
-	public static final int DRV_RIGHT_BACK  = 25;
+	public static final int DRV_RIGHT_MID = 24;
+	public static final int DRV_RIGHT_BACK = 25;
 
-	public static final int GYRO			= 0;
+	public static final int GYRO = 0;
+
+	// Solenoid PCM Channel
+	public static final int COL_SOL_COL_0 = 0;
+	public static final int COL_SOL_COL_1 = 1;
+	// Collector Sensor IDs
+	public static final int COL_SENSE_HATCH = 1;
+	public static final int COL_SENSE_BALL = 0;
+	// Drop Motor Victors IDs
+	public static final int COL_DROPMOTOR_0 = 18;
+	public static final int COL_DROPMOTOR_1 = 19;
+	// Arm Collector ID
+
+	public static final int COL_ARM_0 = 20;
+	public static final int COL_ARM_1 = 21;
+	public static final int COL_SOL_COL_3 = 3;
 }

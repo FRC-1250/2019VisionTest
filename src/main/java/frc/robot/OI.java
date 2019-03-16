@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Cmd_AutoDrive;
-import frc.robot.commands.Cmd_ResetSens;
+import frc.robot.commands.Cmd_ResetSensPos;
 import frc.robot.commands.Cmd_TrackCube;
 
 /**
@@ -18,21 +18,19 @@ import frc.robot.commands.Cmd_TrackCube;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	Joystick Gamepad = new Joystick(0);
+  Joystick Gamepad = new Joystick(0);
 	Joystick Arcadepad = new Joystick(1);
 	
 	JoystickButton rt = new JoystickButton(Gamepad, 8);
-	JoystickButton x = new JoystickButton(Gamepad, 1);
 	JoystickButton y = new JoystickButton(Gamepad, 4);
 	JoystickButton b = new JoystickButton(Gamepad, 3);
-
-
-
+	JoystickButton x = new JoystickButton(Gamepad, 1);
 	
 	public OI() {
-		x.whenPressed(new Cmd_ResetSens());
-		y.whenPressed(new Cmd_AutoDrive(-12, 0.4, 0.2));
-		b.whenPressed(new Cmd_AutoDrive(12, 0.4, 0.2));
+		y.whenPressed(new Cmd_AutoDrive(12, .4, .2));
+		b.whenPressed(new Cmd_AutoDrive(-12, .4, .2));
+		x.whenPressed(new Cmd_ResetSensPos());
+
 	}
 	
 	

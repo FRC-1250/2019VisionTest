@@ -13,11 +13,11 @@ import frc.robot.Robot;
 /**
  * Add your docs here.
  */
-public class Cmd_ResetSens extends InstantCommand {
+public class Cmd_ResetSensPos extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public Cmd_ResetSens() {
+  public Cmd_ResetSensPos() {
     super();
     requires(Robot.s_drivetrain);
   }

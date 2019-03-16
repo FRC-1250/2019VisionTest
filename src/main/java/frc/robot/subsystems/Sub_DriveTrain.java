@@ -71,8 +71,8 @@ public class Sub_DriveTrain extends Subsystem {
 		mRightMotor.configOpenloopRamp(0.1, 10);
 		bRightMotor.configOpenloopRamp(0.1, 10);
 		
-		bRightMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-		fLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+		bRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		fLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		
 	}
 
@@ -143,7 +143,6 @@ public class Sub_DriveTrain extends Subsystem {
     	return bRightMotor.getSelectedSensorPosition(0);
     }
     
-  
     
     public void setSetpointPos(int distance) {
     	driveSetpoint = (int)DRIVE_TICKS * distance;
@@ -152,20 +151,18 @@ public class Sub_DriveTrain extends Subsystem {
     public boolean isDoneDriving() {
     	
 		int currVal = this.getLeftTicks() * 1;
-		int distToPos = currVal -  driveSetpoint;
-		SmartDashboard.putNumber("distToPos", distToPos);
+		int distToPos = currVal - driveSetpoint;
+		SmartDashboard.putNumber("DistToPos", distToPos);
     	return (distToPos >= 0);
 	}
-
+	
 	public boolean isDoneDrivingBack() {
     	
 		int currVal = this.getLeftTicks() * 1;
-		int distToPos = currVal -  driveSetpoint;
-		SmartDashboard.putNumber("distToPos", distToPos);
+		int distToPos = currVal - driveSetpoint;
+		SmartDashboard.putNumber("DistToPos", distToPos);
     	return (distToPos <= 0);
-	}
-	
-
+    }
  
  public void driveToPos( double upperSpeed, double lowerSpeed) {
     	
@@ -226,7 +223,7 @@ public class Sub_DriveTrain extends Subsystem {
   	return (Math.abs(angle - this.getGyroAngle()) < 2);
   }
   public void resetSensorPos() {
-  	bRightMotor.setSelectedSensorPosition(0, 0, 10);
+  	fRightMotor.setSelectedSensorPosition(0, 0, 10);
   	fLeftMotor.setSelectedSensorPosition(0, 0, 10);
   }
     
